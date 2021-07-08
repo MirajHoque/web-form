@@ -17,7 +17,7 @@
     <input type="text" v-model="tempSkill" @keyup.alt="addSkill">
     
     <div v-for="element in skills" :key="element" class="pill">
-      {{ element }}
+      <span @click="deleteSkill(element)">{{ element }}</span>
     </div>
 
 <!-- boolean for single checkbox -->
@@ -54,6 +54,11 @@ export default {
         
         this.tempSkill= ''; 
       }
+    },
+    deleteSkill(element){
+      this.skills= this.skills.filter((item)=>{
+        return element !==item;
+      })
     }
   }
 
@@ -93,6 +98,18 @@ input[type="checkbox"]{
   margin: 0 10px 0 0;
   position: relative;
   top: 2px;
+}
+.pill{
+  display: inline-block;
+  margin: 10px 10px 0 0;
+  padding: 6px 12px;
+  background: #eee;
+  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #777;
+  cursor: pointer;
 }
 
 </style>
